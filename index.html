@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Winpowr — Biotin Complex 25000mcg | V2B Clinical</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --white:#FFFFFF;--page:#F9FAFB;--surface:#F2F4F7;
+  --ink:#0F1923;--ink-mid:#2D3A48;--muted:#6B7A8D;--muted-light:#9BAAB8;
+  --teal:#1B6B72;--teal-mid:#24909A;--teal-light:#E3F4F5;--teal-pale:#F0FAFB;
+  --border:#E1E6EC;--border-strong:#C8D0DA;
+  --success:#1A6B3C;--success-pale:#EAF3EE;
+}
+html{scroll-behavior:smooth}
+body{background:var(--page);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.65;overflow-x:hidden}
+
+/* ANNOUNCE */
+.announce{background:var(--teal);color:#fff;text-align:center;padding:9px;font-size:11px;letter-spacing:0.12em;font-weight:400}
+
+/* NAV */
+nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 72px;display:flex;align-items:center;justify-content:space-between;height:70px;position:sticky;top:0;z-index:200}
+.logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--ink);text-decoration:none}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:400;transition:color 0.2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-right{display:flex;align-items:center;gap:18px}
+.nav-badge{background:var(--teal-light);color:var(--teal);font-size:10px;font-weight:500;letter-spacing:0.08em;padding:5px 12px;border-radius:2px;text-transform:uppercase}
+.nav-cta{background:var(--teal);color:#fff;padding:10px 24px;font-size:12px;font-weight:500;letter-spacing:0.08em;text-decoration:none;transition:background 0.2s;border-radius:2px}
+.nav-cta:hover{background:var(--teal-mid)}
+
+/* BREADCRUMB */
+.breadcrumb{padding:14px 72px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border);background:var(--white)}
+.breadcrumb a{color:var(--muted);text-decoration:none}
+.breadcrumb a:hover{color:var(--teal)}
+.breadcrumb span{margin:0 8px;color:var(--border-strong)}
+
+/* STICKY ATC */
+.sticky-atc{position:sticky;top:70px;z-index:150;background:var(--white);border-bottom:1px solid var(--border);padding:10px 72px;display:flex;align-items:center;justify-content:space-between;transform:translateY(-100%);opacity:0;transition:all 0.3s;pointer-events:none}
+.sticky-atc.visible{transform:translateY(0);opacity:1;pointer-events:all}
+.satc-left{display:flex;align-items:center;gap:14px}
+.satc-img{width:42px;height:42px;background:var(--teal-light);border:1px solid var(--border);border-radius:2px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:18px;color:var(--teal);opacity:0.6}
+.satc-name{font-family:'DM Serif Display',serif;font-size:14px;color:var(--ink)}
+.satc-price{font-size:12px;color:var(--teal);font-weight:500;margin-top:2px}
+.satc-right{display:flex;align-items:center;gap:12px}
+.satc-pack{display:flex;gap:6px}
+.pack-opt{padding:6px 14px;border:1px solid var(--border);font-size:12px;color:var(--muted);cursor:pointer;border-radius:2px;transition:all 0.2s}
+.pack-opt.active{border-color:var(--teal);color:var(--teal);background:var(--teal-pale)}
+.btn-atc-sticky{background:var(--teal);color:#fff;padding:10px 28px;font-size:12px;font-weight:500;border:none;cursor:pointer;border-radius:2px;letter-spacing:0.06em;transition:background 0.2s}
+.btn-atc-sticky:hover{background:var(--teal-mid)}
+
+/* PDP HERO — 3-column clinical: gallery | info | data sidebar */
+.pdp-hero{display:grid;grid-template-columns:1fr 1fr 300px;background:var(--white);border-bottom:1px solid var(--border)}
+
+/* gallery */
+.gallery-col{padding:40px 44px 40px 72px;border-right:1px solid var(--border)}
+.gallery-main{background:var(--surface);border:1px solid var(--border);aspect-ratio:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;margin-bottom:10px;cursor:zoom-in}
+.gallery-ghost{font-family:'DM Serif Display',serif;font-size:180px;font-weight:400;color:rgba(27,107,114,0.06);line-height:1;user-select:none}
+.gallery-badge{position:absolute;top:16px;left:16px;background:var(--teal);color:#fff;font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;padding:5px 12px;border-radius:2px}
+.gallery-3d{position:absolute;bottom:16px;right:16px;background:var(--white);border:1px solid var(--border);padding:7px 14px;font-size:11px;font-weight:500;color:var(--teal);border-radius:2px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all 0.2s}
+.gallery-3d:hover{background:var(--teal-pale);border-color:var(--teal)}
+.gallery-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.thumb{background:var(--surface);border:1px solid var(--border);aspect-ratio:1;cursor:pointer;transition:border-color 0.2s;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:20px;color:var(--teal);opacity:0.2;border-radius:2px}
+.thumb:hover,.thumb.active{border-color:var(--teal);opacity:1}
+.thumb.active{border-width:2px}
+
+/* info col */
+.info-col{padding:40px 44px;border-right:1px solid var(--border)}
+.pdp-kicker{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.kicker-dot{width:7px;height:7px;background:var(--teal);border-radius:50%}
+.kicker-text{font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal)}
+.pdp-title{font-family:'DM Serif Display',serif;font-size:clamp(24px,2.6vw,34px);font-weight:400;line-height:1.15;color:var(--ink);margin-bottom:14px}
+.pdp-title em{font-style:italic;color:var(--teal)}
+.rating-row{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.stars{display:flex;gap:2px}
+.star{width:12px;height:12px;background:var(--teal);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.star.half{opacity:0.3}
+.rat-num{font-size:13px;font-weight:500;color:var(--ink)}
+.rat-count{font-size:13px;color:var(--muted);text-decoration:underline;cursor:pointer}
+.rat-sep{color:var(--border-strong)}
+.rat-rec{font-size:11px;color:var(--success);font-weight:500}
+/* ingr preview pills */
+.ingr-preview{margin-bottom:18px}
+.ip-label{font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-light);margin-bottom:6px;display:block}
+.ip-pills{display:flex;flex-wrap:wrap;gap:5px}
+.ip-pill{font-size:10px;background:var(--teal-light);color:var(--teal);padding:3px 10px;border-radius:2px;font-weight:500}
+/* price */
+.price-block{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.price-main{font-family:'DM Serif Display',serif;font-size:32px;color:var(--ink);display:flex;align-items:baseline;gap:10px}
+.price-per{font-size:12px;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:300}
+.price-note{font-size:12px;color:var(--success);margin-top:4px;font-weight:500}
+/* pack */
+.pack-label{font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.pack-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:18px}
+.pack-card{border:1px solid var(--border);padding:12px 14px;cursor:pointer;transition:all 0.2s;position:relative;border-radius:2px}
+.pack-card:hover{border-color:var(--teal-mid)}
+.pack-card.selected{border-color:var(--teal);border-width:2px;background:var(--teal-pale)}
+.pack-card-name{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.pack-card.selected .pack-card-name{color:var(--teal)}
+.pack-card-price{font-size:12px;color:var(--muted)}
+.pack-save{position:absolute;top:8px;right:8px;background:var(--success-pale);color:var(--success);font-size:9px;font-weight:600;letter-spacing:0.06em;padding:2px 6px;border-radius:2px}
+/* buttons */
+.btn-atc{width:100%;background:var(--teal);color:#fff;border:none;padding:14px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:0.06em;cursor:pointer;border-radius:2px;margin-bottom:8px;transition:background 0.2s}
+.btn-atc:hover{background:var(--teal-mid)}
+.btn-quiz{width:100%;background:transparent;color:var(--teal);border:1px solid var(--teal-mid);padding:12px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;border-radius:2px;margin-bottom:18px;transition:all 0.2s}
+.btn-quiz:hover{background:var(--teal-pale)}
+/* trust mini */
+.trust-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:16px}
+.trust-mini-item{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 6px;background:var(--surface);border:1px solid var(--border);border-radius:2px;text-align:center}
+.trust-mini-icon{font-size:14px;color:var(--teal)}
+.trust-mini-text{font-size:9px;color:var(--muted);font-weight:500;line-height:1.3;letter-spacing:0.02em}
+/* delivery */
+.delivery{background:var(--success-pale);border:1px solid rgba(26,107,60,0.15);border-radius:2px;padding:10px 14px;display:flex;align-items:flex-start;gap:8px}
+.delivery span{font-size:12px;color:var(--success);font-weight:500}
+.delivery small{font-size:11px;color:var(--muted);display:block;margin-top:1px}
+
+/* DATA SIDEBAR — unique to V2B */
+.data-sidebar{background:var(--surface);display:flex;flex-direction:column}
+.ds-section{padding:24px;border-bottom:1px solid var(--border)}
+.ds-head{font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted-light);margin-bottom:14px}
+.ds-stat-row{display:flex;flex-direction:column;gap:10px}
+.ds-stat{display:flex;flex-direction:column;gap:3px}
+.ds-label{font-size:11px;color:var(--muted)}
+.ds-value{font-family:'DM Serif Display',serif;font-size:20px;color:var(--teal)}
+.ds-sub{font-size:10px;color:var(--muted-light)}
+/* outcome bars */
+.outcome-bars{display:flex;flex-direction:column;gap:10px}
+.ob-row{display:flex;flex-direction:column;gap:4px}
+.ob-label{font-size:11px;color:var(--muted)}
+.ob-track{height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.ob-fill{height:100%;background:var(--teal);border-radius:3px}
+.ob-val{font-size:10px;color:var(--teal);font-weight:500}
+/* cert list */
+.cert-list{display:flex;flex-direction:column;gap:8px}
+.cert-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-mid)}
+.cert-check{width:18px;height:18px;background:var(--teal-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--teal);flex-shrink:0}
+/* compare bar */
+.compare-row{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.cmp-item{display:grid;grid-template-columns:80px 1fr auto;gap:8px;align-items:center}
+.cmp-brand{font-size:10px;color:var(--muted)}
+.cmp-brand.highlight{color:var(--teal);font-weight:500}
+.cmp-bar-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.cmp-bar-fill{height:100%;border-radius:3px}
+.cmp-bar-fill.ours{background:var(--teal)}
+.cmp-bar-fill.others{background:var(--border-strong)}
+.cmp-val{font-size:10px;color:var(--muted);text-align:right;white-space:nowrap}
+.cmp-val.highlight{color:var(--teal);font-weight:600}
+
+/* DATA TRUST STRIP */
+.data-strip{background:var(--ink);display:grid;grid-template-columns:repeat(4,1fr)}
+.ds-cell{padding:26px 28px;border-right:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;gap:4px}
+.ds-cell:last-child{border-right:none}
+.ds-cell-label{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-light);font-weight:500}
+.ds-cell-value{font-family:'DM Serif Display',serif;font-size:20px;color:var(--white)}
+.ds-cell-sub{font-size:11px;color:rgba(255,255,255,0.3)}
+
+/* SHARED SECTIONS */
+.sec{padding:72px 72px}
+.sec-white{padding:72px 72px;background:var(--white)}
+.sec-surface{padding:72px 72px;background:var(--surface)}
+.eyebrow{font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;display:block}
+.h2{font-family:'DM Serif Display',serif;font-size:clamp(26px,2.8vw,40px);font-weight:400;line-height:1.15;color:var(--ink);margin-bottom:12px}
+.h2 em{font-style:italic;color:var(--teal)}
+
+/* WHO */
+.who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);margin-top:40px}
+.who-card{background:var(--white);padding:28px 24px;border-right:1px solid var(--border)}
+.who-card:last-child{border-right:none}
+.who-icon{width:40px;height:40px;background:var(--teal-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:18px}
+.who-title{font-family:'DM Serif Display',serif;font-size:16px;color:var(--ink);margin-bottom:8px;line-height:1.3}
+.who-desc{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* INGREDIENTS — table layout */
+.ingr-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;margin-top:44px;align-items:start}
+table.ingr-tbl{width:100%;border-collapse:collapse}
+table.ingr-tbl thead th{font-size:9px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);padding:10px 0;border-bottom:2px solid var(--border);text-align:left}
+table.ingr-tbl tbody td{padding:14px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--muted);vertical-align:top}
+table.ingr-tbl tbody td:first-child{font-weight:500;color:var(--ink);width:40%}
+table.ingr-tbl tbody td:nth-child(2){color:var(--teal);font-weight:500;white-space:nowrap;padding-right:16px;width:22%}
+.clin-badge{display:inline-flex;align-items:center;gap:3px;background:var(--teal-light);color:var(--teal);font-size:9px;font-weight:500;padding:2px 7px;border-radius:2px;margin-top:4px}
+.ingr-right h3{font-family:'DM Serif Display',serif;font-size:22px;color:var(--ink);margin-bottom:12px;line-height:1.3}
+.ingr-right p{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:16px}
+.transp-box{background:var(--teal-pale);border:1px solid rgba(27,107,114,0.15);border-left:3px solid var(--teal);padding:18px 20px;border-radius:2px;margin-top:20px}
+.transp-head{font-size:13px;font-weight:500;color:var(--teal);margin-bottom:5px}
+.transp-body{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* TIMELINE */
+.tl-header{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:44px}
+.tl-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border);background:var(--border)}
+.tl-cell{background:var(--white);padding:26px 22px;position:relative}
+.tl-dot{width:7px;height:7px;background:var(--teal);border-radius:50%;position:absolute;top:22px;right:22px}
+.tl-day{font-family:'DM Serif Display',serif;font-size:30px;color:var(--teal);opacity:0.28;display:block;margin-bottom:8px}
+.tl-title{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:5px}
+.tl-desc{font-size:12px;color:var(--muted);line-height:1.65}
+.how-box{background:var(--surface);border:1px solid var(--border);padding:24px 26px;margin-top:24px;border-radius:2px}
+.how-title{font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.how-steps{display:flex;flex-direction:column;gap:10px}
+.how-step{display:flex;align-items:flex-start;gap:12px}
+.how-num{width:22px;height:22px;background:var(--teal);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;flex-shrink:0;margin-top:1px}
+.how-text{font-size:13px;color:var(--muted);line-height:1.6}
+.how-text strong{color:var(--ink);font-weight:500}
+
+/* EXPERT */
+.expert-pdp{display:grid;grid-template-columns:5fr 7fr;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.exp-img{background:var(--surface);display:flex;align-items:center;justify-content:center;min-height:400px;position:relative;border-right:1px solid var(--border);overflow:hidden}
+.exp-ghost{font-family:'DM Serif Display',serif;font-size:200px;color:rgba(27,107,114,0.04);line-height:1;position:absolute;user-select:none}
+.exp-tag{position:absolute;bottom:28px;left:28px;right:28px;background:var(--white);border:1px solid var(--border);padding:16px 18px}
+.exp-tag strong{display:block;font-family:'DM Serif Display',serif;font-size:15px;color:var(--ink)}
+.exp-tag span{font-size:11px;color:var(--muted);margin-top:3px;display:block}
+.exp-badges{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.exp-badge{font-size:9px;background:var(--teal-light);color:var(--teal);padding:2px 8px;border-radius:2px;font-weight:500}
+.exp-text{padding:60px 72px;display:flex;flex-direction:column;justify-content:center;background:var(--white)}
+.open-q{font-family:'DM Serif Display',serif;font-size:60px;color:var(--teal);opacity:0.18;line-height:0.6;display:block;margin-bottom:14px}
+blockquote.v2bpdp{font-family:'DM Serif Display',serif;font-size:clamp(17px,1.8vw,22px);font-style:italic;line-height:1.6;color:var(--ink);margin-bottom:22px}
+.exp-name{font-size:14px;font-weight:500;color:var(--ink)}
+.exp-role{font-size:12px;color:var(--muted);margin-top:3px}
+.exp-link{margin-top:20px;font-size:13px;color:var(--teal);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:gap 0.2s}
+.exp-link:hover{gap:12px}
+
+/* OUTCOME DATA — unique to V2B */
+.outcome-section{padding:72px 72px;background:var(--white)}
+.outcome-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);margin-top:40px}
+.oc-card{background:var(--page);padding:28px 24px;border-right:1px solid var(--border)}
+.oc-card:last-child{border-right:none}
+.oc-product{font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.oc-metric{margin-bottom:14px}
+.oc-metric-label{font-size:11px;color:var(--muted);margin-bottom:5px}
+.oc-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:3px}
+.oc-fill{height:100%;background:var(--teal);border-radius:3px}
+.oc-values{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.oc-values strong{color:var(--teal)}
+.oc-timeframe{font-size:10px;color:var(--muted-light);letter-spacing:0.06em;text-transform:uppercase;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+
+/* REVIEWS */
+.rev-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px}
+.rat-summary{display:flex;align-items:center;gap:32px;margin-top:12px}
+.rat-big{font-family:'DM Serif Display',serif;font-size:50px;color:var(--ink)}
+.rat-bars{display:flex;flex-direction:column;gap:6px}
+.rb-row{display:flex;align-items:center;gap:8px}
+.rb-lbl{font-size:11px;color:var(--muted);min-width:28px}
+.rb-track{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden;max-width:100px}
+.rb-fill{height:100%;background:var(--teal);border-radius:3px}
+.rb-cnt{font-size:11px;color:var(--muted)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border)}
+.rev-card{background:var(--white);padding:24px;border-right:1px solid var(--border)}
+.rev-card:last-child{border-right:none}
+.rev-top{display:flex;justify-content:space-between;margin-bottom:10px}
+.rev-stars{display:flex;gap:2px}
+.rev-star{width:11px;height:11px;background:var(--teal);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.rev-date{font-size:11px;color:var(--muted)}
+.rev-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:6px}
+.rev-text{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px;font-style:italic}
+.rev-person{display:flex;align-items:center;gap:10px}
+.rev-avatar{width:34px;height:34px;background:var(--teal-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--teal)}
+.rev-name{font-size:13px;font-weight:500;color:var(--ink)}
+.rev-meta{font-size:11px;color:var(--muted);margin-top:1px}
+.rev-verif{font-size:10px;color:var(--success);font-weight:500;margin-top:3px}
+.rev-cta{text-align:center;margin-top:24px}
+.btn-more{background:transparent;border:1px solid var(--border-strong);color:var(--muted);padding:11px 28px;font-size:13px;cursor:pointer;border-radius:2px;transition:all 0.2s;font-family:'DM Sans',sans-serif}
+.btn-more:hover{border-color:var(--teal);color:var(--teal)}
+
+/* CROSS SELL */
+.cs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.cs-card{border:1px solid var(--border);background:var(--page);text-decoration:none;display:block;transition:all 0.22s;border-radius:2px;overflow:hidden}
+.cs-card:hover{background:var(--white);box-shadow:0 6px 24px rgba(0,0,0,0.06);transform:translateY(-2px)}
+.cs-img{aspect-ratio:4/3;background:var(--surface);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:40px;color:var(--teal);opacity:0.12;border-bottom:1px solid var(--border)}
+.cs-body{padding:16px}
+.cs-tag{font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);margin-bottom:5px}
+.cs-name{font-family:'DM Serif Display',serif;font-size:16px;color:var(--ink);margin-bottom:5px;line-height:1.3}
+.cs-desc{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:12px}
+.cs-footer{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid var(--border)}
+.cs-price{font-family:'DM Serif Display',serif;font-size:17px;color:var(--ink)}
+.cs-btn{font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:4px;transition:gap 0.2s}
+.cs-card:hover .cs-btn{gap:8px}
+
+/* STACK BANNER */
+.stack-banner{background:var(--teal);padding:48px 72px;display:flex;align-items:center;justify-content:space-between;gap:40px}
+.sb-left h3{font-family:'DM Serif Display',serif;font-size:26px;color:#fff;margin-bottom:8px}
+.sb-left p{font-size:14px;color:rgba(255,255,255,0.6);max-width:420px;line-height:1.7}
+.sb-right{display:flex;align-items:center;gap:20px;flex-shrink:0}
+.sb-price{text-align:right}
+.sb-total{font-family:'DM Serif Display',serif;font-size:28px;color:#fff}
+.sb-save{font-size:12px;color:rgba(255,255,255,0.6);margin-top:3px}
+.btn-stack{background:#fff;color:var(--teal);border:none;padding:13px 30px;font-size:13px;font-weight:500;letter-spacing:0.06em;cursor:pointer;border-radius:2px;white-space:nowrap;transition:all 0.2s;font-family:'DM Sans',sans-serif}
+.btn-stack:hover{background:var(--teal-pale)}
+
+/* FOOTER */
+footer{background:var(--ink);padding:60px 72px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px}
+.f-logo{font-family:'DM Serif Display',serif;font-size:20px;color:#fff;text-decoration:none;display:block;margin-bottom:12px}
+.f-brand p{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.75;max-width:210px}
+.f-col h4{font-size:9px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal-mid);margin-bottom:16px}
+.f-col ul{list-style:none}
+.f-col li{margin-bottom:10px}
+.f-col a{font-size:13px;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s}
+.f-col a:hover{color:#fff}
+.f-bottom{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding:18px 72px;display:flex;justify-content:space-between;align-items:center}
+.f-bottom p{font-size:11px;color:rgba(255,255,255,0.22)}
+.cert-row{display:flex;gap:8px}
+.cert{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.1);padding:4px 10px;color:rgba(255,255,255,0.28)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.info-col>*{animation:fadeUp 0.6s ease forwards;opacity:0}
+.info-col>*:nth-child(1){animation-delay:.05s}.info-col>*:nth-child(2){animation-delay:.12s}
+.info-col>*:nth-child(3){animation-delay:.19s}.info-col>*:nth-child(4){animation-delay:.26s}
+.info-col>*:nth-child(5){animation-delay:.33s}.info-col>*:nth-child(6){animation-delay:.4s}
+.info-col>*:nth-child(7){animation-delay:.47s}.info-col>*:nth-child(8){animation-delay:.54s}
+</style>
+</head>
+<body>
+<div class="announce">Free Shipping above ₹999 · COD Available · 30-Day Money-Back Guarantee · India's Highest Biotin Dosage — 25,000mcg</div>
+<nav>
+  <a href="#" class="logo">Winpowr</a>
+  <ul class="nav-links"><li><a href="#">Shop</a></li><li><a href="#">Our Science</a></li><li><a href="#">Experts</a></li><li><a href="#">About</a></li></ul>
+  <div class="nav-right"><div class="nav-badge">FSSAI Certified</div><a href="#" class="nav-cta">Shop All</a></div>
+</nav>
+<div class="sticky-atc" id="stickyAtc">
+  <div class="satc-left"><div class="satc-img">B</div><div><div class="satc-name">Biotin Complex 25000mcg</div><div class="satc-price">₹2,499 / pack of 1</div></div></div>
+  <div class="satc-right"><div class="satc-pack"><div class="pack-opt active">Pack of 1</div><div class="pack-opt">Pack of 2</div></div><button class="btn-atc-sticky">Add to Cart</button></div>
+</div>
+<div class="breadcrumb"><a href="#">Home</a><span>/</span><a href="#">Shop</a><span>/</span><a href="#">Hair, Skin & Nails</a><span>/</span>Biotin Complex 25000mcg</div>
+
+<!-- 3-column PDP HERO unique to V2B -->
+<section class="pdp-hero">
+  <div class="gallery-col">
+    <div class="gallery-main">
+      <div class="gallery-ghost">B</div>
+      <div class="gallery-badge">India's Highest Dose</div>
+      <div class="gallery-3d">⬡ View in 3D</div>
+    </div>
+    <div class="gallery-thumbs">
+      <div class="thumb active">B</div><div class="thumb">B</div><div class="thumb">B</div><div class="thumb" style="font-size:14px;opacity:0.15">3D</div>
+    </div>
+  </div>
+  <div class="info-col">
+    <div class="pdp-kicker"><div class="kicker-dot"></div><span class="kicker-text">Hair · Skin · Nails · Clinically Dosed</span></div>
+    <h1 class="pdp-title">Biotin Complex —<br><em>Complete Structural Formula</em></h1>
+    <div class="rating-row">
+      <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star half"></div></div>
+      <span class="rat-num">4.8</span><span class="rat-sep">·</span>
+      <span class="rat-count">247 reviews</span><span class="rat-sep">·</span>
+      <span class="rat-rec">✓ 94% recommend</span>
+    </div>
+    <div class="ingr-preview">
+      <span class="ip-label">Active Ingredients</span>
+      <div class="ip-pills">
+        <span class="ip-pill">Biotin 25,000mcg</span>
+        <span class="ip-pill">Collagen 310mg</span>
+        <span class="ip-pill">Hyaluronic Acid 10mg</span>
+        <span class="ip-pill">MSM 100mg</span>
+        <span class="ip-pill">Nettle Extract 100mg</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price-main">₹2,499 <span class="price-per">/ 60 capsules · 30-day supply</span></div>
+      <div class="price-note">✓ Free shipping on this order · COD available</div>
+    </div>
+    <div>
+      <div class="pack-label">Select Pack</div>
+      <div class="pack-grid">
+        <div class="pack-card selected"><div class="pack-card-name">Pack of 1</div><div class="pack-card-price">₹2,499 · 30 days</div></div>
+        <div class="pack-card"><div class="pack-save">Save 15%</div><div class="pack-card-name">Pack of 2</div><div class="pack-card-price">₹4,248 · 60 days</div></div>
+      </div>
+    </div>
+    <button class="btn-atc" id="mainAtcBtn">Add to Cart</button>
+    <button class="btn-quiz">Not sure? Take the 2-min clinical quiz →</button>
+    <div class="trust-mini">
+      <div class="trust-mini-item"><div class="trust-mini-icon">✦</div><div class="trust-mini-text">FSSAI Certified</div></div>
+      <div class="trust-mini-item"><div class="trust-mini-icon">◈</div><div class="trust-mini-text">GMP Manufactured</div></div>
+      <div class="trust-mini-item"><div class="trust-mini-icon">◉</div><div class="trust-mini-text">30-Day Guarantee</div></div>
+    </div>
+    <div class="delivery">
+      <span style="font-size:17px">🚚</span>
+      <div><span>Order today — deliver by Thursday</span><small>Free standard shipping · Express at checkout</small></div>
+    </div>
+  </div>
+  <!-- DATA SIDEBAR — unique to V2B -->
+  <div class="data-sidebar">
+    <div class="ds-section">
+      <div class="ds-head">Clinical Data</div>
+      <div class="ds-stat-row">
+        <div class="ds-stat"><span class="ds-label">Biotin Dose</span><span class="ds-value">25,000mcg</span><span class="ds-sub">India's highest verified dose</span></div>
+        <div class="ds-stat"><span class="ds-label">Results Timeline</span><span class="ds-value">21 Days</span><span class="ds-sub">First visible changes</span></div>
+        <div class="ds-stat"><span class="ds-label">Customer Outcomes</span><span class="ds-value">94%</span><span class="ds-sub">Report improvement at 60 days</span></div>
+      </div>
+    </div>
+    <div class="ds-section">
+      <div class="ds-head">Outcome Metrics</div>
+      <div class="outcome-bars">
+        <div class="ob-row"><span class="ob-label">Hair shedding reduction</span><div class="ob-track"><div class="ob-fill" style="width:78%"></div></div><span class="ob-val">78% at 60 days</span></div>
+        <div class="ob-row"><span class="ob-label">Skin hydration improvement</span><div class="ob-track"><div class="ob-fill" style="width:88%"></div></div><span class="ob-val">88% at 45 days</span></div>
+        <div class="ob-row"><span class="ob-label">Nail strength improvement</span><div class="ob-track"><div class="ob-fill" style="width:85%"></div></div><span class="ob-val">85% at 30 days</span></div>
+      </div>
+    </div>
+    <div class="ds-section">
+      <div class="ds-head">Vs. Category Average</div>
+      <div class="compare-row">
+        <div class="cmp-item"><span class="cmp-brand highlight">Winpowr</span><div class="cmp-bar-track"><div class="cmp-bar-fill ours" style="width:100%"></div></div><span class="cmp-val highlight">25,000mcg</span></div>
+        <div class="cmp-item"><span class="cmp-brand">Brand B</span><div class="cmp-bar-track"><div class="cmp-bar-fill others" style="width:40%"></div></div><span class="cmp-val">10,000mcg</span></div>
+        <div class="cmp-item"><span class="cmp-brand">Brand C</span><div class="cmp-bar-track"><div class="cmp-bar-fill others" style="width:20%"></div></div><span class="cmp-val">5,000mcg</span></div>
+        <div class="cmp-item"><span class="cmp-brand">Avg. India</span><div class="cmp-bar-track"><div class="cmp-bar-fill others" style="width:28%"></div></div><span class="cmp-val">7,000mcg</span></div>
+      </div>
+    </div>
+    <div class="ds-section">
+      <div class="ds-head">Quality Certifications</div>
+      <div class="cert-list">
+        <div class="cert-item"><div class="cert-check">✓</div>FSSAI Certified</div>
+        <div class="cert-item"><div class="cert-check">✓</div>GMP Manufactured</div>
+        <div class="cert-item"><div class="cert-check">✓</div>NABL Lab Tested</div>
+        <div class="cert-item"><div class="cert-check">✓</div>ISO 9001 Compliant</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="data-strip">
+  <div class="ds-cell"><span class="ds-cell-label">Biotin Dose</span><span class="ds-cell-value">25,000mcg</span><span class="ds-cell-sub">India's highest verified</span></div>
+  <div class="ds-cell"><span class="ds-cell-label">Days to Results</span><span class="ds-cell-value">21 Days</span><span class="ds-cell-sub">First visible changes</span></div>
+  <div class="ds-cell"><span class="ds-cell-label">Customer Satisfaction</span><span class="ds-cell-value">94%</span><span class="ds-cell-sub">Recommend at 60 days</span></div>
+  <div class="ds-cell"><span class="ds-cell-label">Purchase Protection</span><span class="ds-cell-value">30 Days</span><span class="ds-cell-sub">Full refund, no conditions</span></div>
+</div>
+
+<section class="sec-white">
+  <span class="eyebrow">Who is this for</span>
+  <h2 class="h2">This formula was built<br>specifically <em>for you</em> if —</h2>
+  <div class="who-grid">
+    <div class="who-card"><div class="who-icon">💆</div><div class="who-title">You're seeing hair thinning after 28</div><p class="who-desc">Hormonal changes, nutritional gaps, and urban stress accelerate hair loss. The 25,000mcg dose is clinically designed to address this at the follicle level.</p></div>
+    <div class="who-card"><div class="who-icon">✨</div><div class="who-title">Your skin looks dull or dehydrated</div><p class="who-desc">Collagen Peptide 310mg + Hyaluronic Acid restore the moisture barrier that pollution and stress deplete faster than your body can replenish.</p></div>
+    <div class="who-card"><div class="who-icon">💅</div><div class="who-title">Your nails break or peel consistently</div><p class="who-desc">MSM 100mg supports nail plate structural integrity at the matrix level — addressing the root cause, not the cosmetic symptom.</p></div>
+  </div>
+</section>
+
+<section class="sec" style="border-top:1px solid var(--border)">
+  <span class="eyebrow">The Formula</span>
+  <h2 class="h2">Every ingredient. Every dose.<br><em>Nothing hidden.</em></h2>
+  <div class="ingr-layout">
+    <table class="ingr-tbl">
+      <thead><tr><th>Ingredient</th><th>Dose / serving</th><th>Clinical rationale</th></tr></thead>
+      <tbody>
+        <tr><td>Biotin (Vitamin B7)<div class="clin-badge">✓ Clinically studied</div></td><td>25,000mcg</td><td>Stimulates keratin infrastructure — the protein making up 95% of hair and nails at the follicle level.</td></tr>
+        <tr><td>Collagen Peptide<div class="clin-badge">✓ Clinically studied</div></td><td>310mg</td><td>Hydrolysed for maximum absorption. Rebuilds the dermal matrix layer that gives skin its structural firmness.</td></tr>
+        <tr><td>Hyaluronic Acid<div class="clin-badge">✓ Clinically studied</div></td><td>10mg</td><td>Holds up to 1,000× its weight in water. Maintains skin hydration at a cellular level synergistically with Collagen.</td></tr>
+        <tr><td>MSM (Methyl Sulfonyl Methane)<div class="clin-badge">✓ Clinically studied</div></td><td>100mg</td><td>Organic sulphur compound directly supports nail plate formation and enhances Biotin absorption efficiency.</td></tr>
+        <tr><td>Urtica Dioica (Nettle Extract)<div class="clin-badge">✓ Clinically studied</div></td><td>100mg</td><td>DHT blocker — addresses the hormonal driver of androgenic hair loss alongside the structural Biotin support.</td></tr>
+      </tbody>
+    </table>
+    <div class="ingr-right">
+      <h3>Why most Biotin supplements don't work — and why ours does.</h3>
+      <p>The average Indian supplement contains 5,000–10,000mcg. The clinical threshold for measurable hair and nail improvement is 15,000–25,000mcg. Most brands underdose by 60–80%.</p>
+      <p>Winpowr delivers the full 25,000mcg alongside every synergistic co-factor — Collagen, Hyaluronic Acid, MSM, and Nettle Extract — at clinically validated doses.</p>
+      <div class="transp-box"><div class="transp-head">Our Transparency Commitment</div><div class="transp-body">Every ingredient and dose published in full. Certificate of Analysis for every batch available at winpowr.com/lab-results. No proprietary blends, ever.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-surface">
+  <div class="tl-header">
+    <div><span class="eyebrow">Results Timeline</span><h2 class="h2">What to expect —<br>and <em>when.</em></h2></div>
+    <p style="font-size:14px;color:var(--muted);line-height:1.8;max-width:300px">The honest clinical timeline our customers experience with consistent daily use — documented across 1,024 verified purchasers.</p>
+  </div>
+  <div class="tl-row">
+    <div class="tl-cell"><div class="tl-dot"></div><span class="tl-day">Day 7</span><div class="tl-title">Nails feel stronger</div><p class="tl-desc">MSM and Biotin reach nail matrix saturation. Reduced brittleness within the first week of consistent use.</p></div>
+    <div class="tl-cell"><div class="tl-dot"></div><span class="tl-day">Day 14</span><div class="tl-title">Skin hydration improves</div><p class="tl-desc">Hyaluronic Acid and Collagen restore the moisture barrier. Dullness reduces noticeably.</p></div>
+    <div class="tl-cell"><div class="tl-dot"></div><span class="tl-day">Day 21</span><div class="tl-title">Hair shedding reduces</div><p class="tl-desc">25,000mcg Biotin reaches peak clinical efficacy. Most customers notice significantly less hair in the brush and shower.</p></div>
+    <div class="tl-cell"><div class="tl-dot"></div><span class="tl-day">Day 60</span><div class="tl-title">Visible hair thickness</div><p class="tl-desc">New hair growth measurable. Keratin production running at full capacity. Skin radiance and nail strength at peak.</p></div>
+  </div>
+  <div class="how-box">
+    <div class="how-title">Daily Protocol</div>
+    <div class="how-steps">
+      <div class="how-step"><div class="how-num">1</div><div class="how-text"><strong>Morning, with breakfast:</strong> 2 capsules with your first meal. Food increases fat-soluble vitamin absorption by up to 35%.</div></div>
+      <div class="how-step"><div class="how-num">2</div><div class="how-text"><strong>Stay consistent:</strong> Structural supplements work cumulatively. The biggest clinical mistake is stopping before week 3.</div></div>
+      <div class="how-step"><div class="how-num">3</div><div class="how-text"><strong>Track your results:</strong> Photograph hair, skin, or nails on Day 1, 21, and 60. The data will make the results undeniable.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="expert-pdp">
+  <div class="exp-img"><div class="exp-ghost">W</div><div class="exp-tag"><strong>Dr. Priya Sharma</strong><span>MD Clinical Nutrition · AIIMS New Delhi · 14 Years</span><div class="exp-badges"><span class="exp-badge">AIIMS Alumnus</span><span class="exp-badge">MD Nutrition</span><span class="exp-badge">Clinical Advisor</span></div></div></div>
+  <div class="exp-text">
+    <span class="eyebrow">Clinical perspective</span>
+    <span class="open-q">"</span>
+    <blockquote class="v2bpdp">The 25,000mcg Biotin dose in Winpowr's formula is the threshold I'd recommend to any patient presenting with stress-related hair thinning. Most over-the-counter supplements are clinically irrelevant at their dosage levels. This one isn't.</blockquote>
+    <div class="exp-name">Dr. Priya Sharma</div><div class="exp-role">MD Clinical Nutrition · AIIMS New Delhi · 14 Years Clinical Practice</div>
+    <a href="#" class="exp-link">Meet our full expert panel →</a>
+  </div>
+</div>
+
+<!-- OUTCOME DATA SECTION — unique to V2B -->
+<section class="outcome-section">
+  <span class="eyebrow">Customer Outcomes</span>
+  <h2 class="h2">What our customers<br>actually <em>measured.</em></h2>
+  <p style="font-size:14px;color:var(--muted);line-height:1.8;max-width:500px;margin-top:10px">Self-reported outcomes from verified purchasers tracked over 60-day periods. Individual results vary based on consistency of use.</p>
+  <div class="outcome-grid">
+    <div class="oc-card"><div class="oc-product">Hair Shedding · Biotin 25000mcg</div><div class="oc-metric"><div class="oc-metric-label">Reduction in hair shedding</div><div class="oc-bar"><div class="oc-fill" style="width:78%"></div></div><div class="oc-values"><span>Baseline</span><strong>↓ 78% at 60 days</strong></div></div><div class="oc-metric"><div class="oc-metric-label">Customers reporting improvement</div><div class="oc-bar"><div class="oc-fill" style="width:94%"></div></div><div class="oc-values"><span>0%</span><strong>94% at 60 days</strong></div></div><div class="oc-timeframe">Based on 1,024 verified reports · 60-day period</div></div>
+    <div class="oc-card"><div class="oc-product">Skin Hydration · Collagen + HA</div><div class="oc-metric"><div class="oc-metric-label">Visible skin improvement</div><div class="oc-bar"><div class="oc-fill" style="width:88%"></div></div><div class="oc-values"><span>0%</span><strong>88% at 45 days</strong></div></div><div class="oc-metric"><div class="oc-metric-label">Avg. days to first visible change</div><div class="oc-bar"><div class="oc-fill" style="width:55%"></div></div><div class="oc-values"><span>Day 1</span><strong>Day 14 avg.</strong></div></div><div class="oc-timeframe">Based on 847 verified reports · 45-day period</div></div>
+    <div class="oc-card"><div class="oc-product">Nail Strength · MSM + Biotin</div><div class="oc-metric"><div class="oc-metric-label">Nail strength improvement</div><div class="oc-bar"><div class="oc-fill" style="width:85%"></div></div><div class="oc-values"><span>0%</span><strong>85% at 30 days</strong></div></div><div class="oc-metric"><div class="oc-metric-label">Avg. days to first noticeable change</div><div class="oc-bar"><div class="oc-fill" style="width:40%"></div></div><div class="oc-values"><span>Day 1</span><strong>Day 7–10 avg.</strong></div></div><div class="oc-timeframe">Based on 912 verified reports · 30-day period</div></div>
+  </div>
+</section>
+
+<section class="sec-white" style="border-top:1px solid var(--border)">
+  <div class="rev-header">
+    <div><span class="eyebrow">Verified Reviews</span><h2 class="h2">Real customers.<br><em>Measurable results.</em></h2></div>
+    <div class="rat-summary"><div class="rat-big">4.8</div><div class="rat-bars">
+      <div class="rb-row"><span class="rb-lbl">5 ★</span><div class="rb-track"><div class="rb-fill" style="width:82%"></div></div><span class="rb-cnt">202</span></div>
+      <div class="rb-row"><span class="rb-lbl">4 ★</span><div class="rb-track"><div class="rb-fill" style="width:12%"></div></div><span class="rb-cnt">29</span></div>
+      <div class="rb-row"><span class="rb-lbl">3 ★</span><div class="rb-track"><div class="rb-fill" style="width:4%"></div></div><span class="rb-cnt">10</span></div>
+      <div class="rb-row"><span class="rb-lbl">2 ★</span><div class="rb-track"><div class="rb-fill" style="width:1%"></div></div><span class="rb-cnt">4</span></div>
+      <div class="rb-row"><span class="rb-lbl">1 ★</span><div class="rb-track"><div class="rb-fill" style="width:1%"></div></div><span class="rb-cnt">2</span></div>
+    </div></div>
+  </div>
+  <div class="rev-grid">
+    <div class="rev-card"><div class="rev-top"><div class="rev-stars"><div class="rev-star"></div><div class="rev-star"></div><div class="rev-star"></div><div class="rev-star"></div><div class="rev-star"></div></div><span class="rev-date">March 2026</span></div><div class="rev-title">Finally — a Biotin that actually works</div><p class="rev-text">"Spent ₹8,000 on different Biotin brands over 2 years. After 6 weeks on Winpowr, my hair shedding dropped by at least 60%. The difference is the dose."</p><div class="rev-person"><div class="rev-avatar">AK</div><div><div class="rev-name">Anjali K.</div><div class="rev-meta">Bangalore · 8 weeks</div><div class="rev-verif">✓ Verified Purchase</div></div></div></div>
+    <div class="rev-card"><div class="rev-top"><div class="rev-stars"><div class="rev-star"></div><div class="rev-star"></div><div class="rev-star"></div><div class="rev-star"></div><div class="rev-star"></div></div><span class="rev-date">February 2026</span></div><div class="rev-title">Skin changed first, then hair</div><p class="rev-text">"Week 2 my skin was noticeably more hydrated. By week 5 I could see new hair growth at my hairline. Worth every rupee at this quality."</p><div class="rev-person"><div class="rev-avatar">SM</div><div><div class="rev-name">Shreya M.</div><div class="rev-meta">Mumbai · 12 weeks</div><div class="rev-verif">✓ Verified Purchase</div></div></div></div>
+    <div class="rev-card"><div class="rev-top"><div class="rev-stars"><div class="rev-star"></div><div class="rev-star"></div><div class="rev-star"></div><div class="rev-star"></div><div class="rev-star"></div></div><span class="rev-date">January 2026</span></div><div class="rev-title">My dermatologist noticed the difference</div><p class="rev-text">"She asked which supplement I was taking. Nails strong enough I stopped using hardener. Hair texture visibly thicker. On my third pack now."</p><div class="rev-person"><div class="rev-avatar">RN</div><div><div class="rev-name">Riya N.</div><div class="rev-meta">Delhi · 16 weeks</div><div class="rev-verif">✓ Verified Purchase</div></div></div></div>
+  </div>
+  <div class="rev-cta"><button class="btn-more">Read all 247 reviews</button></div>
+</section>
+
+<section class="sec" style="border-top:1px solid var(--border)">
+  <span class="eyebrow">Complete the Routine</span>
+  <h2 class="h2">Pair it for<br><em>better results.</em></h2>
+  <p style="font-size:14px;color:var(--muted);line-height:1.8;max-width:480px;margin-top:10px">The formulas our expert panel recommends alongside Biotin Complex for a clinically comprehensive morning routine.</p>
+  <div class="cs-grid">
+    <a href="#" class="cs-card"><div class="cs-img">G</div><div class="cs-body"><div class="cs-tag">Skin & Cellular · Recommended</div><div class="cs-name">Glutathione + Ascorbic Acid</div><p class="cs-desc">500mg reduced glutathione with Vitamin C enhances Biotin's skin benefits through cellular antioxidant protection.</p><div class="cs-footer"><div class="cs-price">₹3,199</div><div class="cs-btn">View →</div></div></div></a>
+    <a href="#" class="cs-card"><div class="cs-img">F</div><div class="cs-body"><div class="cs-tag">Hair & Cardiovascular · Recommended</div><div class="cs-name">Fish Oil Omega-3</div><p class="cs-desc">1000mg EPA+DHA provides the essential fatty acid base that significantly enhances Biotin's hair-strengthening effect.</p><div class="cs-footer"><div class="cs-price">₹1,799</div><div class="cs-btn">View →</div></div></div></a>
+    <a href="#" class="cs-card"><div class="cs-img">D</div><div class="cs-body"><div class="cs-tag">Metabolic Health · Often Together</div><div class="cs-name">DiaControl</div><p class="cs-desc">Blood sugar spikes directly damage collagen. DiaControl addresses the metabolic driver that undermines structural supplement efficacy.</p><div class="cs-footer"><div class="cs-price">₹2,499</div><div class="cs-btn">View →</div></div></div></a>
+  </div>
+</section>
+
+<div class="stack-banner">
+  <div class="sb-left"><h3>The Morning Glow Stack</h3><p>Biotin Complex + Glutathione + Fish Oil — the three-formula morning protocol our clinical advisors recommend for comprehensive transformation in 60 days.</p></div>
+  <div class="sb-right"><div class="sb-price"><div class="sb-total">₹7,497</div><div class="sb-save">Save ₹1,200 when bundled together</div></div><button class="btn-stack">Shop the Stack</button></div>
+</div>
+
+<footer><div class="f-brand"><a href="#" class="f-logo">Winpowr</a><p>Transparently formulated supplements for people who demand clinical-grade quality at every dose.</p></div><div class="f-col"><h4>Products</h4><ul><li><a href="#">Biotin Complex</a></li><li><a href="#">Glutathione</a></li><li><a href="#">DiaControl</a></li><li><a href="#">Fish Oil</a></li></ul></div><div class="f-col"><h4>Company</h4><ul><li><a href="#">Our Science</a></li><li><a href="#">Lab Results</a></li><li><a href="#">Expert Panel</a></li><li><a href="#">About Us</a></li></ul></div><div class="f-col"><h4>Support</h4><ul><li><a href="#">FAQ</a></li><li><a href="#">Shipping & COD</a></li><li><a href="#">Returns</a></li><li><a href="#">Privacy Policy</a></li></ul></div></footer>
+<div class="f-bottom"><p>© 2026 Winpowr. All rights reserved.</p><div class="cert-row"><div class="cert">FSSAI</div><div class="cert">GMP</div><div class="cert">ISO 9001</div><div class="cert">NABL Tested</div></div></div>
+
+<script>
+const sticky=document.getElementById('stickyAtc');
+const mainBtn=document.getElementById('mainAtcBtn');
+const obs=new IntersectionObserver(([e])=>{sticky.classList.toggle('visible',!e.isIntersecting)},{threshold:0});
+if(mainBtn)obs.observe(mainBtn);
+document.querySelectorAll('.pack-card').forEach(c=>{c.addEventListener('click',()=>{document.querySelectorAll('.pack-card').forEach(x=>x.classList.remove('selected'));c.classList.add('selected');})});
+document.querySelectorAll('.pack-opt').forEach(o=>{o.addEventListener('click',()=>{document.querySelectorAll('.pack-opt').forEach(x=>x.classList.remove('active'));o.classList.add('active');})});
+document.querySelectorAll('.thumb').forEach(t=>{t.addEventListener('click',()=>{document.querySelectorAll('.thumb').forEach(x=>x.classList.remove('active'));t.classList.add('active');})});
+</script>
+</body>
+</html>
